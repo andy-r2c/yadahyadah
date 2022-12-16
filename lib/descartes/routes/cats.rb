@@ -6,8 +6,8 @@ module Descartes
         content_type 'application/json'
         @cats = []
         begin
-          doc = Nokogiri::HTML(open("http://thecatapi.com/api/images/get?format=xml&size=small&results_per_page=#{params[:count]}"))
-          doc.css('url').each do |kitty|
+          docs = Nokogiri::HTML(open("http://thecatapi.com/api/images/get?format=xml&size=small&results_per_page=#{params[:count]}"))
+          docs.css('url').each do |kitty|
             @cats << kitty.content
           end
         rescue => e
